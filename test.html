@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Test</title>
+</head>
+<body>
+    <h1>Firebase Connection Test</h1>
+    <div id="status">Testing...</div>
+
+    <script type="module">
+        const statusDiv = document.getElementById('status');
+
+        try {
+            statusDiv.innerHTML = 'Step 1: Loading Firebase config...<br>';
+
+            import { auth, db } from './firebase-config.js';
+
+            statusDiv.innerHTML += 'Step 2: Firebase config loaded!<br>';
+            statusDiv.innerHTML += 'Auth object: ' + (auth ? '✓' : '✗') + '<br>';
+            statusDiv.innerHTML += 'DB object: ' + (db ? '✓' : '✗') + '<br>';
+
+            import('./app.js').then(() => {
+                statusDiv.innerHTML += 'Step 3: app.js loaded successfully!<br>';
+                statusDiv.innerHTML += '<strong style="color: green;">All modules loaded correctly!</strong>';
+            }).catch(err => {
+                statusDiv.innerHTML += '<strong style="color: red;">Error loading app.js: ' + err.message + '</strong>';
+                console.error(err);
+            });
+
+        } catch (error) {
+            statusDiv.innerHTML += '<strong style="color: red;">Error: ' + error.message + '</strong>';
+            console.error(error);
+        }
+    </script>
+</body>
+</html>

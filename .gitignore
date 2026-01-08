@@ -1,0 +1,8 @@
+node_modules/
+.firebase/
+.firebaserc
+firebase.json
+firestore.rules
+firebase-test.html
+app-original-backup.js
+app-firebase.js

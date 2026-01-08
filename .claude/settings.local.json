@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -c:*)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill -9)",
+      "Bash(python3:*)",
+      "Bash(npm install:*)",
+      "Bash(brew --version:*)",
+      "Bash(curl:*)",
+      "Bash(sudo installer:*)",
+      "Bash(node --version:*)",
+      "Bash(npm --version)",
+      "Bash(npx firebase login:*)"
+    ]
+  }
+}
