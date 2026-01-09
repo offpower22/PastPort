@@ -1466,9 +1466,42 @@ footer {
         flex-direction: column;
     }
 
-    .leaderboard,
+    /* Hide On This Day on mobile */
     .on-this-day-sidebar {
+        display: none;
+    }
+
+    /* Reorder: main content first, then leaderboard */
+    .left-sidebar {
+        order: 2;
         width: 100%;
+    }
+
+    .main-content {
+        order: 1;
+        width: 100%;
+    }
+
+    .right-sidebar {
+        order: 3;
+        width: 100%;
+    }
+
+    .leaderboard {
+        width: 100%;
+    }
+
+    /* Improve mobile header */
+    header {
+        margin-bottom: 24px;
+    }
+
+    .logo h1 {
+        font-size: 22px;
+    }
+
+    .logo-icon {
+        font-size: 24px;
     }
 }
 

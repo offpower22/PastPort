@@ -826,7 +826,7 @@ function initHomePage() {
             { name: 'Jackson_Spokane', streak: 0, score: 5 },
             { name: 'EraExplorer', streak: 0, score: 5 },
             { name: 'Zoe_DesMoines', streak: 0, score: 5 },
-            { name: 'PastPorter', streak: 0, score: 5 },
+            { name: 'PortsExplorer', streak: 0, score: 5 },
             { name: 'Carter_Fargo', streak: 0, score: 5 },
             { name: 'AnnalsAnna', streak: 0, score: 5 },
             { name: 'Aria_Sioux', streak: 0, score: 5 },
