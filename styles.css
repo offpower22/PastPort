@@ -1060,13 +1060,22 @@ footer {
     cursor: pointer;
     color: var(--text-light);
     transition: color 0.2s;
-    padding: 0;
-    width: 32px;
-    height: 32px;
+    padding: 8px;
+    width: 44px;
+    height: 44px;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-close:hover {
     color: var(--text-dark);
+}
+
+.modal-close:active {
+    transform: scale(0.95);
 }
 
 .stats-grid {
@@ -1570,6 +1579,14 @@ footer {
 
     .difficulty-icon {
         font-size: 36px;
+    }
+
+    /* Make modal close button bigger on mobile */
+    .modal-close {
+        width: 48px;
+        height: 48px;
+        font-size: 32px;
+        padding: 12px;
     }
 }
 
