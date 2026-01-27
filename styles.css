@@ -548,6 +548,35 @@ header {
     margin-bottom: 16px;
 }
 
+.why-pastport .how-it-works-preview {
+    margin-bottom: 8px;
+}
+
+.why-pastport .how-it-works-expanded {
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.why-pastport .how-it-works-expanded.hidden {
+    display: none;
+}
+
+.learn-more-toggle {
+    background: none;
+    border: none;
+    color: var(--primary-blue);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.learn-more-toggle:hover {
+    color: var(--dark-blue);
+    text-decoration: underline;
+}
+
 .learn-more-link {
     color: var(--primary-blue);
     text-decoration: none;
@@ -1456,8 +1485,7 @@ footer {
         flex-wrap: wrap;
     }
 
-    .leaderboard,
-    .on-this-day-sidebar {
+    .leaderboard {
         width: calc(50% - 15px);
         order: 3;
         position: static;
@@ -1473,11 +1501,6 @@ footer {
 @media (max-width: 768px) {
     main {
         flex-direction: column;
-    }
-
-    /* Hide On This Day on mobile */
-    .on-this-day-sidebar {
-        display: none;
     }
 
     /* Reorder: main content first, then leaderboard */
