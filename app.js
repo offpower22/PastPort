@@ -1096,88 +1096,100 @@ function initHomePage() {
 
         if (!leaderboardList) return;
 
-        const mockUsers = [
-            { name: 'marcus_j', streak: 47, score: 2350 },
-            { name: 'sarahchen', streak: 38, score: 2140 },
-            { name: 'tompkins22', streak: 32, score: 1920 },
-            { name: 'bri_nguyen', streak: 28, score: 1680 },
-            { name: 'davidr91', streak: 21, score: 1260 },
-            { name: 'jess.taylor', streak: 19, score: 1140 },
-            { name: 'kfoster', streak: 15, score: 950 },
-            { name: 'mike_w', streak: 12, score: 780 },
-            { name: 'alexrivera', streak: 11, score: 720 },
-            { name: 'priya_k', streak: 10, score: 680 },
-            { name: 'emmawilson', streak: 9, score: 630 },
-            { name: 'jpark23', streak: 8, score: 580 },
-            { name: 'danielm', streak: 7, score: 530 },
-            { name: 'cat.murphy', streak: 7, score: 520 },
-            { name: 'mayasingh', streak: 6, score: 480 },
-            { name: 'chris_b', streak: 6, score: 470 },
-            { name: 'rachelf', streak: 5, score: 420 },
-            { name: 'andykim', streak: 5, score: 410 },
-            { name: 'brandon.lee', streak: 4, score: 370 },
-            { name: 'annie_h', streak: 4, score: 360 },
-            { name: 'kevinjones', streak: 4, score: 350 },
-            { name: 'lunawang', streak: 3, score: 310 },
-            { name: 'tyler_m', streak: 3, score: 300 },
-            { name: 'sophiab', streak: 3, score: 290 },
-            { name: 'benmartin', streak: 2, score: 250 },
-            { name: 'ethan.cole', streak: 2, score: 240 },
-            { name: 'ashleyr', streak: 2, score: 230 },
-            { name: 'olivia_d', streak: 2, score: 220 },
-            { name: 'jsmith47', streak: 1, score: 180 },
-            { name: 'jake.m', streak: 1, score: 170 },
-            { name: 'meganl', streak: 1, score: 160 },
-            { name: 'sofia_r', streak: 1, score: 150 },
-            { name: 'ryanthomas', streak: 1, score: 140 },
-            { name: 'liamk', streak: 1, score: 130 },
-            { name: 'natalie.c', streak: 1, score: 120 },
-            { name: 'izzy_m', streak: 1, score: 110 },
-            { name: 'chrisp', streak: 1, score: 100 },
-            { name: 'noah.garcia', streak: 1, score: 90 },
-            { name: 'samwilliams', streak: 1, score: 80 },
-            { name: 'ava_johnson', streak: 0, score: 70 },
-            { name: 'mattb', streak: 0, score: 60 },
-            { name: 'masonc', streak: 0, score: 50 },
-            { name: 'hannahk', streak: 0, score: 40 },
-            { name: 'mia.patel', streak: 0, score: 30 },
-            { name: 'lucas_t', streak: 0, score: 20 },
-            { name: 'lucasm', streak: 0, score: 10 },
-            { name: 'ericyang', streak: 0, score: 5 },
-            { name: 'harper.j', streak: 0, score: 5 },
-            { name: 'nickr', streak: 0, score: 5 },
-            { name: 'ella_b', streak: 0, score: 5 },
-            { name: 'jordanp', streak: 0, score: 5 },
-            { name: 'logand', streak: 0, score: 5 },
-            { name: 'taylor_s', streak: 0, score: 5 },
-            { name: 'chloekim', streak: 0, score: 5 },
-            { name: 'amandaw', streak: 0, score: 5 },
-            { name: 'aiden.r', streak: 0, score: 5 },
-            { name: 'jennyl', streak: 0, score: 5 },
-            { name: 'emily_c', streak: 0, score: 5 },
-            { name: 'jasonh', streak: 0, score: 5 },
-            { name: 'jacksonw', streak: 0, score: 5 },
-            { name: 'kellyp', streak: 0, score: 5 },
-            { name: 'zoe.chen', streak: 0, score: 5 },
-            { name: 'ryang', streak: 0, score: 5 },
-            { name: 'carter.m', streak: 0, score: 5 },
-            { name: 'annam', streak: 0, score: 5 },
-            { name: 'aria_l', streak: 0, score: 5 },
-            { name: 'derekj', streak: 0, score: 5 },
-            { name: 'graysonb', streak: 0, score: 5 },
-            { name: 'stephk', streak: 0, score: 5 },
-            { name: 'lilyzhang', streak: 0, score: 5 },
-            { name: 'markh', streak: 0, score: 5 },
-            { name: 'leo_s', streak: 0, score: 5 },
-            { name: 'sarahm', streak: 0, score: 5 },
-            { name: 'gracew', streak: 0, score: 5 },
-            { name: 'willp', streak: 0, score: 5 },
-            { name: 'seb.martinez', streak: 0, score: 5 },
-            { name: 'kaitlynr', streak: 0, score: 5 },
-            { name: 'layla.h', streak: 0, score: 5 },
-            { name: 'benf', streak: 0, score: 5 },
-            { name: 'owen_k', streak: 0, score: 5 }
+        // Seeded PRNG (mulberry32) — deterministic per day
+        function mulberry32(seed) {
+            return function() {
+                seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+                var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+                t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+                return ((t ^ t >>> 14) >>> 0) / 4294967296;
+            };
+        }
+
+        const today = new Date();
+        const daysSinceEpoch = Math.floor(today.getTime() / (1000 * 60 * 60 * 24));
+
+        // Each user has a name and consistency (probability of playing on any given day).
+        // Higher consistency = longer streaks over time, lower = more likely to lose streaks.
+        const baseUsers = [
+            { name: 'marcus_j', consistency: 0.94 },
+            { name: 'sarahchen', consistency: 0.91 },
+            { name: 'tompkins22', consistency: 0.88 },
+            { name: 'bri_nguyen', consistency: 0.85 },
+            { name: 'davidr91', consistency: 0.82 },
+            { name: 'jess.taylor', consistency: 0.80 },
+            { name: 'kfoster', consistency: 0.77 },
+            { name: 'mike_w', consistency: 0.74 },
+            { name: 'alexrivera', consistency: 0.72 },
+            { name: 'priya_k', consistency: 0.70 },
+            { name: 'emmawilson', consistency: 0.67 },
+            { name: 'jpark23', consistency: 0.65 },
+            { name: 'danielm', consistency: 0.62 },
+            { name: 'cat.murphy', consistency: 0.60 },
+            { name: 'mayasingh', consistency: 0.57 },
+            { name: 'chris_b', consistency: 0.55 },
+            { name: 'rachelf', consistency: 0.52 },
+            { name: 'andykim', consistency: 0.50 },
+            { name: 'brandon.lee', consistency: 0.48 },
+            { name: 'annie_h', consistency: 0.46 },
+            { name: 'kevinjones', consistency: 0.44 },
+            { name: 'lunawang', consistency: 0.42 },
+            { name: 'tyler_m', consistency: 0.40 },
+            { name: 'sophiab', consistency: 0.38 },
+            { name: 'benmartin', consistency: 0.36 },
+            { name: 'ethan.cole', consistency: 0.34 },
+            { name: 'ashleyr', consistency: 0.32 },
+            { name: 'olivia_d', consistency: 0.30 },
+            { name: 'jsmith47', consistency: 0.28 },
+            { name: 'jake.m', consistency: 0.27 },
+            { name: 'meganl', consistency: 0.26 },
+            { name: 'sofia_r', consistency: 0.25 },
+            { name: 'ryanthomas', consistency: 0.24 },
+            { name: 'liamk', consistency: 0.23 },
+            { name: 'natalie.c', consistency: 0.22 },
+            { name: 'izzy_m', consistency: 0.21 },
+            { name: 'chrisp', consistency: 0.20 },
+            { name: 'noah.garcia', consistency: 0.19 },
+            { name: 'samwilliams', consistency: 0.18 },
+            { name: 'ava_johnson', consistency: 0.17 },
+            { name: 'mattb', consistency: 0.16 },
+            { name: 'masonc', consistency: 0.15 },
+            { name: 'hannahk', consistency: 0.15 },
+            { name: 'mia.patel', consistency: 0.14 },
+            { name: 'lucas_t', consistency: 0.13 },
+            { name: 'lucasm', consistency: 0.13 },
+            { name: 'ericyang', consistency: 0.12 },
+            { name: 'harper.j', consistency: 0.12 },
+            { name: 'nickr', consistency: 0.11 },
+            { name: 'ella_b', consistency: 0.11 }
         ];
+
+        // Simulate the last 90 days for each user to get their current streak & total days
+        const SIM_DAYS = 90;
+        const startDay = daysSinceEpoch - SIM_DAYS;
+
+        const mockUsers = baseUsers.map((user, userIndex) => {
+            let streak = 0;
+            let totalDays = 0;
+
+            for (let d = startDay; d <= daysSinceEpoch; d++) {
+                // Unique seed per user per day — deterministic
+                const rng = mulberry32(d * 1000 + userIndex * 37 + 12345);
+                const played = rng() < user.consistency;
+                if (played) {
+                    streak++;
+                    totalDays++;
+                } else {
+                    streak = 0;
+                }
+            }
+
+            const score = (streak * 50) + (totalDays * 10);
+            return { name: user.name, streak, score };
+        });
+
+        // Sort by score so the leaderboard reflects daily changes
+        mockUsers.sort((a, b) => b.score - a.score);
 
         // Show only top 5 users in leaderboard
         leaderboardList.innerHTML = mockUsers.slice(0, 5).map((user, index) => `
