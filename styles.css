@@ -41,12 +41,16 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: 16px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
     display: flex;
     gap: 32px;
     align-items: flex-start;
+    flex: 1;
 }
 
 /* Center main content on briefing page */
@@ -702,11 +706,11 @@ header {
 /* Footer */
 footer {
     text-align: center;
-    padding: 48px 0 32px;
+    padding: 12px 0;
     color: var(--text-light);
     font-size: 13px;
     border-top: 1px solid var(--border-light);
-    margin-top: 64px;
+    margin-top: 24px;
 }
 
 .footer-content {
@@ -718,19 +722,19 @@ footer {
     display: flex;
     justify-content: center;
     gap: 24px;
-    margin-bottom: 16px;
+    margin-bottom: 4px;
 }
 
 .footer-link {
     color: var(--text-dark);
     text-decoration: none;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     display: inline-flex;
     align-items: center;
     gap: 6px;
     transition: all 0.2s ease;
-    padding: 8px 16px;
+    padding: 4px 12px;
     border-radius: 8px;
 }
 
@@ -744,15 +748,15 @@ footer {
 }
 
 .footer-tagline {
-    margin: 12px 0 8px;
+    margin: 2px 0;
     color: var(--text-light);
-    font-size: 13px;
+    font-size: 12px;
     font-style: italic;
 }
 
 .footer-copyright {
     color: var(--text-muted);
-    font-size: 12px;
+    font-size: 11px;
     margin: 0;
 }
 
